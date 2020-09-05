@@ -1,0 +1,34 @@
+
+.task {
+  --background-colour: inherit;
+  --emphasis-colour: inherit;
+  padding: 5px;
+  margin: 5px 20px;
+  background-color: var(--background-colour);
+}
+
+.task.LOW {
+  --background-colour: #fffe97;
+  --emphasis-colour: #d7d313;
+}
+
+.task.MEDIUM {
+  --background-colour: #ffbd5a;
+  --emphasis-colour: #ff8e21;
+}
+
+.task.HIGH {
+  --background-colour: #FF9090;
+  --emphasis-colour: #FF6046;
+}
+
+.task-line {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.summary {
+  padding: 0 10px 15px 10px;
+  text-align: left;
+  border-bottom: var(--emphasis-colour) 3px solid;
+}

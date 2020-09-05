@@ -1,4 +1,4 @@
-export interface Task {
+export interface ITask {
   // Task Id used internally
   abxTaskId: number
   organisationTaskId: number
@@ -24,17 +24,23 @@ export enum PriorityEnum {
   HIGH = 'HIGH'
 }
 
-const dummyTask: Task = {
+export enum StatusEnum {
+  InProgress = 'In Progress',
+  Complete = 'Complete',
+  Assigned = 'Assigned'
+}
+
+const dummyTask: ITask = {
   abxTaskId: 123,
   organisationTaskId: 321,
   organisationId: 3,
   priority: PriorityEnum.LOW,
-  taskStatus: 'In Progress',
-  assignedto: 'Emily Axford',
+  taskStatus: StatusEnum.InProgress,
+  assignedto: 'AAA11AA',
   timestamp: new Date(),
   latitude: -150.321,
   longitude: 39.321,
-  tasksummary: 'Reach out to sponsors',
+  tasksummary: 'Unspecified first aid emergency',
   taskdescription: 'Leverage agile frameworks to provide a robust synopsis ' +
     'for high level overviews. Iterative approaches to corporate strategy foster ' +
     'collaborative thinking to further the overall value proposition. Organically grow ' +
@@ -43,34 +49,40 @@ const dummyTask: Task = {
 }
 export const tasks = [ dummyTask, dummyTask, dummyTask, dummyTask, dummyTask, dummyTask, dummyTask ]
 
+export interface IResponse<T = any> {
+  status: number,
+  body?: T
+}
 
-const response = (status = 200, body?: any) =>
+const response = <T>(status = 200, body?: T): IResponse<T> =>
   ({ status, body })
 
 // tasks
-const getAllTasks = () =>
+export const getAllTasks = (): IResponse<ITask[]> =>
   response(201, tasks) // GET
-const createTask = (task: Task[]) =>
+
+export const createTask = (task: ITask[]): IResponse =>
   response(201) // POST
 
-
 // tasks/organisations/{organisationId}
-const getTasksByOrganisation = (organisationId: number) =>
+export const getTasksByOrganisation = (organisationId: number): IResponse<ITask[]> =>
   response(201, tasks) // GET
 
 // tasks/organisations/{organisationId}/{callerId}/
 // note: accessId in request header
-const getTasksByCaller = (organisationId: number, callerId: number, accessId: number) =>
+export const getTasksByCaller = (organisationId: number, callerId: number, accessId: number): IResponse<ITask[]> =>
   response(200, tasks) // GET
 
 // tasks/organisations/{organisationId}/{callerId}/latest
-const getLatestTaskByCaller = (organisationId: number, callerId: number, accessId: number) =>
+export const getLatestTaskByCaller = (organisationId: number, callerId: number, accessId: number): IResponse<ITask> =>
   response(200, dummyTask) // GET
 
 // tasks/{abxTaskId}/
-const deleteTask = (abxTaskId: number) =>
+export const deleteTask = (abxTaskId: number): IResponse =>
   response(204) // DELETE
-const getTask = (abxTaskId: number) =>
+
+export const getTask = (abxTaskId: number): IResponse<ITask> =>
   response(200, dummyTask) // GET
-const updateTask = (abxTaskId: number, task: Task) =>
+
+export const updateTask = (abxTaskId: number, task: ITask) =>
   response(201) // PUT

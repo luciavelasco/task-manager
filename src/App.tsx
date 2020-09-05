@@ -1,14 +1,18 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
+import { dummyTask, PriorityEnum, StatusEnum, tasks } from './dummyData'
+import { Task } from './molecules/Task'
+import { TaskEdit } from './molecules/TaskEdit'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+    <div className="app">
+      <header className="app-header">
+        <h1>Task Manager</h1>
       </header>
+      <main className="app-body">
+        {tasks.map(t => <Task task={t}/> )}
+      </main>
     </div>
   );
 }
