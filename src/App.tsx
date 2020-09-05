@@ -11,6 +11,7 @@ function App() {
         <h1>Task Manager</h1>
       </header>
       <main className="app-body">
+        <TaskEdit task={dummyTask(PriorityEnum.MEDIUM, StatusEnum.Assigned)} />
         {tasks.map(t => <Task task={t}/> )}
       </main>
     </div>
