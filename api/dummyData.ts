@@ -32,8 +32,8 @@ const dummyTask: Task = {
   taskStatus: 'In Progress',
   assignedto: 'Emily Axford',
   timestamp: new Date(),
-  latitude: 123.321,
-  longitude: 123.321,
+  latitude: -150.321,
+  longitude: 39.321,
   tasksummary: 'Reach out to sponsors',
   taskdescription: 'Leverage agile frameworks to provide a robust synopsis ' +
     'for high level overviews. Iterative approaches to corporate strategy foster ' +
