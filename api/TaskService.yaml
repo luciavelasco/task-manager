@@ -1,0 +1,251 @@
+openapi: 3.0.1
+info:
+  title: Airbox Task Manager APIs
+  description: APIs to manage task creation and task retrieval by client devices
+  version: "1.0"
+servers:
+- url: https://api.airboxsystems.com/taskmanager/v1
+  description: Provide task management functionalities
+paths:
+  /tasks:
+    get:
+      summary: 'endpoint to get all the tasks for all organisations'
+      operationId: readAllTasks
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/task'
+    post:
+      summary: endpoint to create a set of tasks
+      operationId: postTaskCreation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/task'
+      responses:
+        201:
+          description: Created
+
+
+  /tasks/organisations/{organisationId}:
+    get:
+      summary: 'endpoint to get all the tasks for a given organisation'
+      operationId: readAllTasksForOrganisation
+      parameters:
+      - name: organisationId
+        in: path
+        description: the Organisation Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/task'        
+          
+  /tasks/organisations/{organisationId}/{callerId}/:
+    get:
+      summary: Get a list of tasks  for the caller 
+      parameters:
+      - name: organisationId
+        in: path
+        description: the Organisation Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: callerId
+        in: path
+        description: the caller Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: accessId
+        in: header
+        description: the Organisation Id used by the caller
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/task"   
+
+  /tasks/organisations/{organisationId}/{callerId}/latest:
+    get:
+      summary: Get latest task for the caller
+      parameters:
+      - name: organisationId
+        in: path
+        description: the Organisation Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: callerId
+        in: path
+        description: the caller Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: accessId
+        in: header
+        description: the Organisation Id used by the caller
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/task"    
+
+  /tasks/{abxTaskId}/:
+    get:
+      summary: Get task details  
+      parameters:
+      - name: abxTaskId
+        in: path
+        description: the task Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/task"  
+    put:
+      summary: endpoint to updated an existing task
+      operationId: updateTask
+      parameters:
+      - name: abxTaskId
+        in: path
+        description: the task Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:    
+          application/json:
+            schema:
+              $ref: '#/components/schemas/task'
+      responses:
+        201:
+          description: Updated
+    delete:
+      summary: endpoint to delete an existing task
+      operationId: deleteTask
+      parameters:
+      - name: abxTaskId
+        in: path
+        description: the task Id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        204:
+          description: Deleted
+components:
+  schemas:
+    task:
+      type: object
+      properties:
+        AbxTaskId:
+          type: integer
+          format: int64
+          description: The Task Id used internally
+        OrganisationTaskId:
+          type: integer
+          format: int64
+          description: The Task Id used by the organisation
+        OrganisationId:
+          type: integer
+          format: int64
+          description: The Organisation Id
+        priority:
+          type: string
+          enum: [LOW, MEDIUM, HIGH]
+          description: The priority given to the incident
+        taskStatus:
+          type: string
+          description: The task status
+        assignedto:
+          type: string
+          description: the vehicle id associated with the task
+        timestamp:
+          type: string
+          format: date-time 
+          example: 2019-05-28T13:06:29.854+0000
+          description: When the incident happened
+        latitude:
+          type: number
+          format: float
+          minimum: -180
+          maximum: 180
+        longitude:
+          type: number
+          format: float
+          minimum: -90
+          maximum: 90
+        tasksummary:
+          type: string
+          maxLength: 255
+          description: a short summary to be displayed in task lists
+        taskdescription:
+          type: string
+          description: a full description of what the task is about
+  securitySchemes:
+    application:
+      type: openIdConnect
+      openIdConnectUrl: http://example.com/someform/of/token
