@@ -1,0 +1,21 @@
+
+.text-edit {
+  margin-top: 10px;
+  width: 99%;
+}
+
+.latlon-input {
+  min-width: 100px;
+}
+
+.description {
+  height: 5rem;
+}
+
+.cancel-button {
+  border: var(--heavy-emphasis) 3px solid;
+  background-color: var(--background-colour);
+}
+.cancel-button:hover {
+  border-color: #ff3526;
+}

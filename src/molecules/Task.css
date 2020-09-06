@@ -1,7 +1,5 @@
 
 .task {
-  --background-colour: inherit;
-  --emphasis-colour: inherit;
   padding: 5px;
   margin: 5px 20px;
   background-color: var(--background-colour);
@@ -10,16 +8,19 @@
 .task.LOW {
   --background-colour: #fffe97;
   --emphasis-colour: #d7d313;
+  --heavy-emphasis: #e8e414;
 }
 
 .task.MEDIUM {
   --background-colour: #ffbd5a;
   --emphasis-colour: #ff8e21;
+  --heavy-emphasis: #ff781b;
 }
 
 .task.HIGH {
   --background-colour: #FF9090;
   --emphasis-colour: #FF6046;
+  --heavy-emphasis: #ff4b31;
 }
 
 .task-line {
@@ -31,4 +32,25 @@
   padding: 0 10px 15px 10px;
   text-align: left;
   border-bottom: var(--emphasis-colour) 3px solid;
+  margin: 16px 0;
+}
+
+.task-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.expand-contents {
+  margin-top: 6px;
+  padding: 4px;
+  text-align: justify;
+}
+
+.see-more-button {
+  flex-grow: 1;
+  margin-right: 5px;
+}
+
+.edit-button {
+  width: 20%;
 }

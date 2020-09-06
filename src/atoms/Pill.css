@@ -1,23 +1,8 @@
 
 .pill {
-  background-color: #282c34;
-  color: #ffffff;
+  background-color: var(--emphasis-colour);
+  color: #282c34;
   padding: 4px;
   border-radius: 3px;
   font-weight: 600;
-}
-
-.task.LOW .pill {
-  background-color: #d7d313;
-  color: #282c34;
-}
-
-.task.MEDIUM .pill {
-  background-color: #ff8e21;
-  color: #282c34;
-}
-
-.task.HIGH .pill {
-  background-color: #FF6046;
-  color: #282c34;
 }

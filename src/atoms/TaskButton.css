@@ -1,0 +1,19 @@
+
+.button {
+  padding: 10px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin-top: 10px;
+  background-color: var(--emphasis-colour);
+  border: 3px solid var(--emphasis-colour);
+  cursor: pointer;
+  text-align: center;
+}
+
+.button:hover {
+  border-color: var(--heavy-emphasis);
+}
+
+.half-size {
+  width: 45%;
+}

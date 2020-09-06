@@ -1,6 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
 .app {
   text-align: center;
-  box-sizing: border-box;
+  background-color: #dbe3e9;
+  --background-colour: #8bc9e2;
+  --emphasis-colour: #5b9db7;
+  --heavy-emphasis: #528ba3;
+  position: relative;
 }
 
 .app-header {
@@ -16,10 +24,20 @@
 
 .app-body {
   min-height: 90vh;
-  background-color: #dbe3e9;
 }
 
 .app-link {
   color: #61dafb;
 }
 
+.create-button {
+  margin: 5px 20px;
+}
+
+.create-task {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* width minus task margin */
+  width: calc(100% - 40px);
+}

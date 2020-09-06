@@ -18,17 +18,30 @@ export interface ITask {
 
 }
 
+/*
+ Arrays to make the F/E more maintainable by only having to update options in one file
+ */
 export enum PriorityEnum {
   LOW = 'LOW',
   MEDIUM = 'MEDIUM',
   HIGH = 'HIGH'
 }
+export const availablePriorities: PriorityEnum[] = [
+  PriorityEnum.LOW,
+  PriorityEnum.MEDIUM,
+  PriorityEnum.HIGH
+]
 
 export enum StatusEnum {
   InProgress = 'In Progress',
   Complete = 'Complete',
   Assigned = 'Assigned'
 }
+export const availableStatuses: StatusEnum[] = [
+  StatusEnum.InProgress,
+  StatusEnum.Complete,
+  StatusEnum.Assigned
+]
 
 export const dummyTask = (priority: PriorityEnum, status: StatusEnum): ITask => ({
   abxTaskId: 123,
@@ -45,7 +58,6 @@ export const dummyTask = (priority: PriorityEnum, status: StatusEnum): ITask => 
     'for high level overviews. Iterative approaches to corporate strategy foster ' +
     'collaborative thinking to further the overall value proposition. Organically grow ' +
     'the holistic world view of disruptive innovation via workplace diversity and empowerment.'
-
 })
 export const tasks = [
   dummyTask(PriorityEnum.LOW, StatusEnum.InProgress),
