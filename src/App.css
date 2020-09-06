@@ -24,6 +24,8 @@
 
 .app-body {
   min-height: 90vh;
+  max-width: 920px;
+  margin: 0 auto;
 }
 
 .app-link {
