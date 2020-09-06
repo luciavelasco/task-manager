@@ -15,7 +15,8 @@
     "react-datetime-picker": "^3.0.2",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "validate.js": "^0.13.1"
   },
   "scripts": {
     "start": "react-scripts start",

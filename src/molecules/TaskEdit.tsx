@@ -85,17 +85,24 @@ export const TaskEdit: FunctionComponent<ITaskOwnProps> = ({ task = emptyTask, o
         value={taskUpdate.taskdescription}
         onChange={v => update('taskdescription', v.target.value)}/>
       </div>
-      {/* Can't set organisation; no endpoint for list of organisation */}
-      {/* Can't set caller id; no endpoint for caller list */}
-      {errors.length && <>
-          <p className="form-error">Please fix these errors before saving:</p>
-        {errors.map(e => <p>{e}</p>)}
+
+      {!!errors.length && <>
+          <p className="danger-text">Please fix these errors before saving:</p>
+        {errors.map((errorMessage, i) => <p key={i} className="danger-text">{errorMessage}</p>)}
       </>}
+
       <div className="task-line">
         <TaskButton halfSize={true} className={'cancel-button'} onClick={onClose}>
           Cancel
         </TaskButton>
         <TaskButton halfSize={true} onClick={() => {
+          const validationErrors = validateTask(taskUpdate)
+          if (validationErrors.length) {
+            setErrors(validationErrors)
+            return
+          }
+          /* Can't set organisation; no endpoint for list of organisation */
+          /* Can't set caller; no endpoint for caller list */
           const newTask: ITask = {
             // add in the data that would ordinarily be provided by the backend
             // and filled back in the state by the response
@@ -104,11 +111,6 @@ export const TaskEdit: FunctionComponent<ITaskOwnProps> = ({ task = emptyTask, o
             organisationId: 3,
             ...taskUpdate
           } as ITask
-          const validationErrors = validateTask(newTask)
-          if (validationErrors.length) {
-            setErrors(validationErrors)
-            return
-          }
           onSave(newTask)
         }}>
           {'abxTaskId' in taskUpdate ? 'Update Task' : 'Create Task'}
