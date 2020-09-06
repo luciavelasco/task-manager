@@ -1,4 +1,4 @@
-import React, { FunctionComponent, MouseEventHandler, useState } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import './Task.css'
 import './TaskEdit.css'
 import { availablePriorities, availableStatuses, ITask, PriorityEnum } from '../dummyData'
