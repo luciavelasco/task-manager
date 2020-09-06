@@ -52,14 +52,14 @@ export const TaskEdit: FunctionComponent<ITaskOwnProps> = ({ task = emptyTask, o
           value={taskUpdate.taskStatus ?? 'none'}
           onChange={v => update('taskStatus', v.target.value)}>
           <option disabled value="none"> -- select an option --</option>
-          {availableStatuses.map(v => <option value={v}>{v}</option>)}
+          {availableStatuses.map((v, i) => <option key={i} value={v}>{v}</option>)}
         </select>
         </label>
         <label>Priority <select
           value={taskUpdate.priority ?? 'none'}
           onChange={v => update('priority', v.target.value as PriorityEnum)}>
           <option disabled value="none"> -- select an option --</option>
-          {availablePriorities.map(v => <option value={v}>{v}</option>)}
+          {availablePriorities.map((v, i) => <option key={i} value={v}>{v}</option>)}
         </select>
         </label>
       </div>
