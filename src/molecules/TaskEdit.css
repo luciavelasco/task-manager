@@ -16,6 +16,11 @@
   border: var(--heavy-emphasis) 3px solid;
   background-color: var(--background-colour);
 }
+
 .cancel-button:hover {
-  border-color: #ff3526;
+  border-color: var(--colour-danger);
+}
+
+.danger-text {
+  color: var(--colour-danger);
 }

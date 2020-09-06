@@ -8,7 +8,7 @@
   --background-colour: #8bc9e2;
   --emphasis-colour: #5b9db7;
   --heavy-emphasis: #528ba3;
-  position: relative;
+  --colour-danger: #ff3526;
 }
 
 .app-header {
@@ -32,12 +32,4 @@
 
 .create-button {
   margin: 5px 20px;
-}
-
-.create-task {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  /* width minus task margin */
-  width: calc(100% - 40px);
 }
