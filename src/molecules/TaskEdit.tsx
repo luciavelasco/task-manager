@@ -8,7 +8,7 @@ import { validateTask } from '../taskValidator'
 
 export interface ITaskOwnProps {
   task?: ITask
-  onClose: MouseEventHandler<HTMLDivElement>
+  onClose: () => any
   onSave: (newTask: ITask) => any
   className?: string
 }

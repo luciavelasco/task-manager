@@ -3,11 +3,10 @@ import './TaskButton.css'
 
 interface ITaskButtonOwnProps {
   halfSize?: boolean
-  onClick: MouseEventHandler<HTMLDivElement>
+  onClick: () => any
   className?: string
 }
 
 export const TaskButton: FunctionComponent<ITaskButtonOwnProps> =
   ({ children, className, onClick, halfSize }) =>
-    <div className={`button ${halfSize && 'half-size'} ${className}`} onClick={onClick}>{children}</div>
-
+    <button className={`button ${halfSize ? 'half-size' : ''} ${className}`} onClick={onClick}>{children}</button>
