@@ -16,7 +16,6 @@ const getDateText = (task: ITask) => task.timestamp.getDate() === new Date().get
 
 export const Task: FunctionComponent<ITaskOwnProps> = ({ task, onEdit }) => {
   const [ isEditing, setIsEditing ] = useState(false)
-  // const [ taskState, setTask ] = useState(task)
   const [ isExpanded, setExpansion ] = useState(false)
 
   return isEditing ?
